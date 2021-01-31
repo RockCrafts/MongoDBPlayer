@@ -1,7 +1,6 @@
 # MongoDBPlayer
 
-# V1 of MongoDBPlayer for Minecraft #
-Made by @RockCrafts#9703
+V1 of MongoDBPlayer for Minecraft by @RockCrafts#9703
 -----------------------------------
 
 Set your URI in the config file to connect to mongodb.
