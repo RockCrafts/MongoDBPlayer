@@ -1,0 +1,8 @@
+
+f
+java:S2637"KThis method's return value is marked "lombok.NonNull" but null is returned.(Åá¤‹ÿÿÿÿÿ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ÃÔˆùÿÿÿÿ
+P
+java:S1118":Add a private constructor to hide the implicit public one.(ÿÄÛğ
+<
+java:S1168 "&Return an empty array instead of null.(¥¹ï

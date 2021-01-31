@@ -1,0 +1,3 @@
+# Set how long you want the plugin to wait until
+# auto-saving all players data. (ticks)
+auto-save: 100

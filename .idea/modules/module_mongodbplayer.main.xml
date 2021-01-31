@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_mongodbplayer.main" default="compile.module.mongodbplayer.main">
+  <dirname property="module.mongodbplayer.main.basedir" file="${ant.file.module_mongodbplayer.main}"/>
+  
+  <property name="module.jdk.home.mongodbplayer.main" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.mongodbplayer.main" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.mongodbplayer.main" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.mongodbplayer.main" value="-encoding UTF-8 -source 8 -target 1.8 ${compiler.args}"/>
+  
+  <property name="mongodbplayer.main.output.dir" value="${module.mongodbplayer.main.basedir}/../../build/classes/java/main"/>
+  <property name="mongodbplayer.main.testoutput.dir" value="${module.mongodbplayer.main.basedir}/../../build/classes/java/main"/>
+  
+  <path id="mongodbplayer.main.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="mongodbplayer.main.module.production.classpath">
+    <path refid="${module.jdk.classpath.mongodbplayer.main}"/>
+    <path refid="library.gradle:_org.mongodb:mongodb-driver-sync:4.2.0.classpath"/>
+    <path refid="library.gradle:_org.spigotmc:spigot:1.16.5-r0.1-snapshot.classpath"/>
+    <path refid="library.gradle:_org.mongodb:mongodb-driver-core:4.2.0.classpath"/>
+    <path refid="library.gradle:_org.mongodb:bson:4.2.0.classpath"/>
+    <pathelement location="${path.variable.maven_repository}/org/projectlombok/lombok/1.18.18/lombok-1.18.18.jar"/>
+  </path>
+  
+  <path id="mongodbplayer.main.runtime.production.module.classpath">
+    <pathelement location="${mongodbplayer.main.output.dir}"/>
+    <path refid="library.gradle:_org.mongodb:mongodb-driver-sync:4.2.0.classpath"/>
+    <path refid="library.gradle:_org.mongodb:mongodb-driver-core:4.2.0.classpath"/>
+    <path refid="library.gradle:_org.mongodb:bson:4.2.0.classpath"/>
+    <pathelement location="${path.variable.maven_repository}/org/projectlombok/lombok/1.18.18/lombok-1.18.18.jar"/>
+  </path>
+  
+  <path id="mongodbplayer.main.module.classpath">
+    <path refid="${module.jdk.classpath.mongodbplayer.main}"/>
+    <pathelement location="${mongodbplayer.main.output.dir}"/>
+    <path refid="library.gradle:_org.mongodb:mongodb-driver-sync:4.2.0.classpath"/>
+    <path refid="library.gradle:_org.spigotmc:spigot:1.16.5-r0.1-snapshot.classpath"/>
+    <path refid="library.gradle:_org.mongodb:mongodb-driver-core:4.2.0.classpath"/>
+    <path refid="library.gradle:_org.mongodb:bson:4.2.0.classpath"/>
+    <pathelement location="${path.variable.maven_repository}/org/projectlombok/lombok/1.18.18/lombok-1.18.18.jar"/>
+  </path>
+  
+  <path id="mongodbplayer.main.runtime.module.classpath">
+    <pathelement location="${mongodbplayer.main.output.dir}"/>
+    <path refid="library.gradle:_org.mongodb:mongodb-driver-sync:4.2.0.classpath"/>
+    <path refid="library.gradle:_org.spigotmc:spigot:1.16.5-r0.1-snapshot.classpath"/>
+    <path refid="library.gradle:_org.mongodb:mongodb-driver-core:4.2.0.classpath"/>
+    <path refid="library.gradle:_org.mongodb:bson:4.2.0.classpath"/>
+    <pathelement location="${path.variable.maven_repository}/org/projectlombok/lombok/1.18.18/lombok-1.18.18.jar"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.mongodbplayer.main">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.mongodbplayer.main">
+    <patternset refid="excluded.from.module.mongodbplayer.main"/>
+  </patternset>
+  
+  <path id="mongodbplayer.main.module.sourcepath">
+    <dirset dir="${module.mongodbplayer.main.basedir}/../../src/main">
+      <include name="java"/>
+      <include name="resources"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.mongodbplayer.main" depends="compile.module.mongodbplayer.main.production,compile.module.mongodbplayer.main.tests" description="Compile module MongoDBPlayer.main"/>
+  
+  <target name="compile.module.mongodbplayer.main.production" depends="register.custom.compilers" description="Compile module MongoDBPlayer.main; production classes">
+    <mkdir dir="${mongodbplayer.main.output.dir}"/>
+    <javac2 destdir="${mongodbplayer.main.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.mongodbplayer.main}/javac">
+      <compilerarg line="${compiler.args.mongodbplayer.main}"/>
+      <bootclasspath refid="mongodbplayer.main.module.bootclasspath"/>
+      <classpath refid="mongodbplayer.main.module.production.classpath"/>
+      <src refid="mongodbplayer.main.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.mongodbplayer.main"/>
+    </javac2>
+    
+    <copy todir="${mongodbplayer.main.output.dir}">
+      <fileset dir="${module.mongodbplayer.main.basedir}/../../src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.mongodbplayer.main.basedir}/../../src/main/resources">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.mongodbplayer.main.tests" depends="register.custom.compilers,compile.module.mongodbplayer.main.production" description="compile module MongoDBPlayer.main; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.mongodbplayer.main" description="cleanup module">
+    <delete dir="${mongodbplayer.main.output.dir}"/>
+    <delete dir="${mongodbplayer.main.testoutput.dir}"/>
+  </target>
+</project>

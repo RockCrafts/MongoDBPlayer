@@ -1,0 +1,6 @@
+name: MongoDBPlayer
+author: RockCrafts
+version: 1.0
+api-version: 1.16
+main: xyz.rockcrafts.mc.MDBPlayer.MDBPlayer
+description: Plugin for saving locaiton, inventory & Enderchest accross servers through MongoDB

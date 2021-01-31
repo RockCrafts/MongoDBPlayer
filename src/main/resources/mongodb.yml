@@ -1,0 +1,4 @@
+# Example URI Format: mongodb://{user1}:{pwd1}@{host1}/{db}
+uri: mongodb://{user1}:{pwd1}@{host1}/{db}
+db: "server"
+collection: "player_data"
